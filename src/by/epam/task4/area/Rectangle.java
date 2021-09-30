@@ -1,19 +1,17 @@
 package by.epam.task4.area;
 
-public class Rectangle {
-    private final double xMin;
-    private final double xMax;
-    private final double yMin;
-    private final double yMax;
+import by.epam.task4.point.Point;
 
-    public Rectangle(double x, double y, double width, double height) {
-        this.xMin = x;
-        this.xMax = x + width;
-        this.yMin = y;
-        this.yMax = y + height;
+public class Rectangle {
+    private final Point pointMin;
+    private final Point pointMax;
+
+    public Rectangle(Point pointMin, double width, double height) {
+        this.pointMin = pointMin;
+        this.pointMax = new Point(pointMin.getX() + width, pointMin.getY() + height);
     }
 
     public boolean contains(double x, double y) {
-        return (x >= xMin && x <= xMax && y >= yMin && y <= yMax);
+        return (x >= pointMin.getX() && x <= pointMax.getX() && y >= pointMin.getY() && y <= pointMax.getY());
     }
 }

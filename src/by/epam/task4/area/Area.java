@@ -1,5 +1,7 @@
 package by.epam.task4.area;
 
+import by.epam.task4.point.Point;
+
 import java.util.ArrayList;
 
 public class Area {
@@ -9,9 +11,9 @@ public class Area {
         this.rectangles = rectangles;
     }
 
-    public boolean contains(double x, double y) {
+    public boolean contains(Point point) {
         for (Rectangle rectangle : rectangles) {
-            if (rectangle.contains(x, y)) {
+            if (rectangle.contains(point.getX(), point.getY())) {
                 return true;
             }
         }
