@@ -1,12 +1,27 @@
 package by.epam.task8;
 
+import by.epam.services.reader.impl.ReaderImpl;
+import by.epam.services.reader.interfaces.Reader;
+import by.epam.services.writer.impl.WriterImpl;
+import by.epam.services.writer.interfaces.Writer;
+
 public class Task8 {
     public static void main(String[] args) {
-        int[] arr = {1, 9, 5, 3, 23, 85};
-        int k = 3;
-        int sum = calculateSumMultiplesK(arr, k);
+        Reader reader = new ReaderImpl();
+        Writer writer = new WriterImpl();
 
-        System.out.println(sum);
+        int[] arr = inputNumbers(6, reader);
+        int k = reader.readInt();
+        writer.writeLn(calculateSumMultiplesK(arr, k));
+    }
+
+    private static int[] inputNumbers(int number, Reader reader) {
+        int[] arr = new int[number];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = reader.readInt();
+        }
+        return arr;
     }
 
     private static int calculateSumMultiplesK(int[] arr, int k) {
