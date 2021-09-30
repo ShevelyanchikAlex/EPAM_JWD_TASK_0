@@ -1,11 +1,28 @@
 package by.epam.task10;
 
+import by.epam.services.reader.impl.ReaderImpl;
+import by.epam.services.reader.interfaces.Reader;
+import by.epam.services.writer.impl.WriterImpl;
+import by.epam.services.writer.interfaces.Writer;
+
 public class Task10 {
     public static void main(String[] args) {
-        int[] initArray = {1, 2, 3, 4};
+        Reader reader = new ReaderImpl();
+        Writer writer = new WriterImpl();
+
+        int[] initArray = inputNumbers(4, reader);
         int[][] matrix = initMatrix(initArray.length, initArray);
 
-        printMatrix(matrix);
+        printMatrix(matrix, writer);
+    }
+
+    private static int[] inputNumbers(int number, Reader reader) {
+        int[] arr = new int[number];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = reader.readInt();
+        }
+        return arr;
     }
 
     private static int[][] initMatrix(int n, int[] initArray) {
@@ -24,12 +41,12 @@ public class Task10 {
     }
 
 
-    private static void printMatrix(int[][] matrix) {
+    private static void printMatrix(int[][] matrix, Writer writer) {
         for (int[] ints : matrix) {
             for (int anInt : ints) {
-                System.out.print(anInt + " ");
+                writer.write(anInt + " ");
             }
-            System.out.println();
+            writer.writeLn("");
         }
     }
 
